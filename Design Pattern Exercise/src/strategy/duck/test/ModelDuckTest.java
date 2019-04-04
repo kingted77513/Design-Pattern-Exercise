@@ -39,7 +39,7 @@ class ModelDuckTest {
 
 	@Test
 	void testFly() {
-		String expected = "I can't fly";
+		String expected = "Fly with a rocket";
 		String actual = duck.fly();
 		assertEquals(expected, actual);
 	}
