@@ -29,4 +29,27 @@ class DarkRoastTest {
 		double actual = beverage.cost();
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	void testGetFullCondimentCost() {
+		double expected = 1.54;
+		addAllCondiment();
+		double actual = beverage.cost();
+		assertEquals(expected, actual);
+	}
+
+	private void addAllCondiment() {
+		beverage.setMilk();
+		beverage.setSoy();
+		beverage.setMocha();
+		beverage.setWhip();
+	}
+	
+	@Test
+	void testGetFullCondimentDescription() {
+		String expected = "Dark Roast Coffee, Milk, Mocha, Soy, Whip";
+		addAllCondiment();
+		String actual = beverage.getDescription();
+		assertEquals(expected, actual);
+	}
 }
