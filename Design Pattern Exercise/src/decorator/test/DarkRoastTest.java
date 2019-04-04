@@ -5,11 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import decorator.Beverage;
 import decorator.DarkRoast;
+import decorator.Milk;
+import decorator.Mocha;
+import decorator.Soy;
+import decorator.Whip;
 
 class DarkRoastTest {
 	
-	DarkRoast beverage;
+	Beverage beverage;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -39,17 +44,26 @@ class DarkRoastTest {
 	}
 
 	private void addAllCondiment() {
-		beverage.setMilk();
-		beverage.setSoy();
-		beverage.setMocha();
-		beverage.setWhip();
+		beverage = new Milk(beverage);
+		beverage = new Soy(beverage);
+		beverage = new Mocha(beverage);
+		beverage = new Whip(beverage);
 	}
 	
 	@Test
 	void testGetFullCondimentDescription() {
-		String expected = "Dark Roast Coffee, Milk, Mocha, Soy, Whip";
+		String expected = "Dark Roast Coffee, Milk, Soy, Mocha, Whip";
 		addAllCondiment();
 		String actual = beverage.getDescription();
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	void testGetDoubleFullCondimentCost() {
+		double expected = 2.09;
+		addAllCondiment();
+		addAllCondiment();
+		double actual = beverage.cost();
 		assertEquals(expected, actual);
 	}
 }

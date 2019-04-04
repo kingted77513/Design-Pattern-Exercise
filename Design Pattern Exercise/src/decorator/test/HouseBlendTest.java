@@ -5,11 +5,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import decorator.Beverage;
 import decorator.HouseBlend;
+import decorator.Milk;
+import decorator.Mocha;
+import decorator.Soy;
+import decorator.Whip;
 
 class HouseBlendTest {
 	
-	HouseBlend beverage;
+	Beverage beverage;
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -39,15 +44,15 @@ class HouseBlendTest {
 	}
 
 	private void addAllCondiment() {
-		beverage.setMilk();
-		beverage.setSoy();
-		beverage.setMocha();
-		beverage.setWhip();
+		beverage = new Milk(beverage);
+		beverage = new Soy(beverage);
+		beverage = new Mocha(beverage);
+		beverage = new Whip(beverage);
 	}
 	
 	@Test
 	void testGetFullCondimentDescription() {
-		String expected = "House Blend Coffee, Milk, Mocha, Soy, Whip";
+		String expected = "House Blend Coffee, Milk, Soy, Mocha, Whip";
 		addAllCondiment();
 		String actual = beverage.getDescription();
 		assertEquals(expected, actual);

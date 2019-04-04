@@ -1,12 +1,17 @@
 package decorator;
  
-public class Whip extends Beverage {
- 
-	public String getDescription() {
-		return ", Whip";
+public class Whip extends CondimentDecorator {
+	Beverage beverage;
+	
+	public Whip(Beverage beverage) {
+		this.beverage = beverage;
 	}
- 
+	
+	public String getDescription() {
+		return beverage.getDescription() + ", Whip";
+	}
+
 	public double cost() {
-		return .10;
+		return .10 + beverage.cost();
 	}
 }
