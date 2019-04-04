@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test;
 
 import decorator.Beverage;
 import decorator.Decaf;
-import decorator.Milk;
-import decorator.Mocha;
-import decorator.Soy;
-import decorator.Whip;
+import decorator.condiment.Milk;
+import decorator.condiment.Mocha;
+import decorator.condiment.Soy;
+import decorator.condiment.Whip;
 
 class DecafTest {
 	

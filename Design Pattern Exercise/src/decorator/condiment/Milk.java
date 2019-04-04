@@ -1,4 +1,6 @@
-package decorator;
+package decorator.condiment;
+
+import decorator.Beverage;
 
 public class Milk extends CondimentDecorator {
 	Beverage beverage;

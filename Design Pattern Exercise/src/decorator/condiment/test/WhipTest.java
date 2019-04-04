@@ -1,4 +1,4 @@
-package decorator.test;
+package decorator.condiment.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,21 +7,21 @@ import org.junit.jupiter.api.Test;
 
 import decorator.Beverage;
 import decorator.HouseBlend;
-import decorator.Milk;
+import decorator.condiment.Whip;
 
-class MilkTest {
+class WhipTest {
 	
 	Beverage beverage;
 
 	@BeforeEach
 	void setUp() throws Exception {
 		beverage = new HouseBlend();
-		beverage = new Milk(beverage);
+		beverage = new Whip(beverage);
 	}
 
 	@Test
 	void testGetDescription() {
-		String expected = "House Blend Coffee, Milk";
+		String expected = "House Blend Coffee, Whip";
 		String actual = beverage.getDescription();
 		assertEquals(expected, actual);
 	}

@@ -1,4 +1,4 @@
-package decorator.test;
+package decorator.condiment.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import decorator.Beverage;
 import decorator.HouseBlend;
-import decorator.Soy;
+import decorator.condiment.Soy;
 
 class SoyTest {
 	

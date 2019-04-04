@@ -1,5 +1,7 @@
-package decorator;
- 
+package decorator.condiment;
+
+import decorator.Beverage;
+
 public class Whip extends CondimentDecorator {
 	Beverage beverage;
 	

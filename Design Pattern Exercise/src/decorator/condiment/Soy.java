@@ -1,4 +1,6 @@
-package decorator;
+package decorator.condiment;
+
+import decorator.Beverage;
 
 public class Soy extends CondimentDecorator {
 	Beverage beverage;
