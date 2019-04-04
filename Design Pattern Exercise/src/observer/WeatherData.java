@@ -1,23 +1,11 @@
 package observer;
 
-import observer.display.CurrentConditionsDisplay;
-import observer.display.ForecastDisplay;
-import observer.display.StatisticsDisplay;
+import java.util.Observable;
 
-public class WeatherData {
+public class WeatherData extends Observable{
 	private float temperature;
 	private float humidity;
 	private float pressure;
-	
-	public CurrentConditionsDisplay currentConditionsDisplay;
-	public StatisticsDisplay statisticsDisplay;
-	public ForecastDisplay forecastDisplay;
-	
-	public WeatherData() {
-		currentConditionsDisplay = new CurrentConditionsDisplay();
-		statisticsDisplay = new StatisticsDisplay();
-		forecastDisplay = new ForecastDisplay();
-	}
 	
 	public void setMeasurements(float temperature, float humidity, float pressure) {
 		this.temperature = temperature;
@@ -26,9 +14,8 @@ public class WeatherData {
 	}
 	
 	public void measurementsChanged() {
-		currentConditionsDisplay.update(temperature, humidity, pressure);
-		statisticsDisplay.update(temperature, humidity, pressure);
-		forecastDisplay.update(temperature, humidity, pressure);
+		setChanged();
+		notifyObservers();
 	}
 
 	public float getTemperature() {

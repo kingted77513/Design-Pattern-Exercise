@@ -6,6 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import observer.WeatherData;
+import observer.display.CurrentConditionsDisplay;
+import observer.display.ForecastDisplay;
+import observer.display.StatisticsDisplay;
 
 class WeatherDataTest {
 	WeatherData data;
@@ -42,15 +45,22 @@ class WeatherDataTest {
 		String exptectedForecastDisplay
 			= "Forecast: Improving weather on the way!";
 		
+		CurrentConditionsDisplay currentConditionsDisplay
+			= new CurrentConditionsDisplay(data);
+		ForecastDisplay forecastDisplay
+			= new ForecastDisplay(data);
+		StatisticsDisplay statisticsDisplay
+			= new StatisticsDisplay(data);
+		
 		data.setMeasurements(80, 60, 30.4f);
 		data.measurementsChanged();
 		
 		String actualCurrentConditionsDisplay 
-			= data.currentConditionsDisplay.display();
+			= currentConditionsDisplay.display();
 		String actualStatisticsDisplay
-			= data.statisticsDisplay.display();
+			= statisticsDisplay.display();
 		String actualForecastDisplay
-			= data.forecastDisplay.display();
+			= forecastDisplay.display();
 		
 		assertEquals(exptectedCurrentConditionsDisplay
 				, actualCurrentConditionsDisplay);

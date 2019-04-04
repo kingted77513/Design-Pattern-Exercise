@@ -5,15 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import observer.WeatherData;
 import observer.display.ForecastDisplay;
 
 class ForecastDisplayTest {
 
+	WeatherData weatherData;
 	ForecastDisplay display;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		display = new ForecastDisplay();
+		weatherData = new WeatherData();
+		display = new ForecastDisplay(weatherData);
 	}
 
 	@Test
@@ -23,10 +26,12 @@ class ForecastDisplayTest {
 		float temperature = 80;
 		float humidity = 65;
 		float pressure = 29f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		pressure = 30.4f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		String actual = display.display();
 		assertEquals(excepted, actual);
@@ -39,10 +44,12 @@ class ForecastDisplayTest {
 		float temperature = 80;
 		float humidity = 65;
 		float pressure = 29f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		pressure = 29f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		String actual = display.display();
 		assertEquals(excepted, actual);
@@ -55,10 +62,12 @@ class ForecastDisplayTest {
 		float temperature = 80;
 		float humidity = 65;
 		float pressure = 30.4f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		pressure = 29f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		String actual = display.display();
 		assertEquals(excepted, actual);

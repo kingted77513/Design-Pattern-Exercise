@@ -5,15 +5,18 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import observer.WeatherData;
 import observer.display.CurrentConditionsDisplay;
 
 class CurrentConditionsDisplayTest {
 
+	WeatherData weatherData;
 	CurrentConditionsDisplay display;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		display = new CurrentConditionsDisplay();
+		weatherData = new WeatherData();
+		display = new CurrentConditionsDisplay(weatherData);
 	}
 
 	@Test
@@ -23,7 +26,8 @@ class CurrentConditionsDisplayTest {
 		float temperature = 80;
 		float humidity = 65;
 		float pressure = 30.4f;
-		display.update(temperature, humidity, pressure);
+		weatherData.setMeasurements(temperature, humidity, pressure);
+		weatherData.measurementsChanged();
 		
 		String actual = display.display();
 		assertEquals(excepted, actual);

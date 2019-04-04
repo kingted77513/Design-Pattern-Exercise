@@ -1,14 +1,18 @@
 package observer.display;
 
-public class ForecastDisplay implements DisplayElement {
+import java.util.Observable;
+import java.util.Observer;
+
+import observer.WeatherData;
+
+public class ForecastDisplay implements Observer, DisplayElement {
 	private float currentPressure = 29.92f;  
 	private float lastPressure;
-
-	public void update(float temp, float humidity, float pressure) {
-        lastPressure = currentPressure;
-		currentPressure = pressure;
-
-		display();
+	private Observable observable;
+	
+	public ForecastDisplay(Observable observable) {
+		this.observable = observable;
+		this.observable.addObserver(this);
 	}
 
 	public String display() {
@@ -21,5 +25,14 @@ public class ForecastDisplay implements DisplayElement {
 			message += "Watch out for cooler, rainy weather";
 		}
 		return message;
+	}
+
+	@Override
+	public void update(Observable obs, Object arg) {
+		if (obs instanceof WeatherData) {
+			WeatherData weatherData = (WeatherData)obs;
+			lastPressure = currentPressure;
+			currentPressure = weatherData.getPressure();
+		}
 	}
 }
