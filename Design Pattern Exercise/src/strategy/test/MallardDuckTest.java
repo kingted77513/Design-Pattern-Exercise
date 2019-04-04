@@ -35,4 +35,11 @@ class MallardDuckTest {
 		String actual = duck.display();
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	void testFly() {
+		String expected = "Fly";
+		String actual = duck.fly();
+		assertEquals(expected, actual);
+	}
 }
