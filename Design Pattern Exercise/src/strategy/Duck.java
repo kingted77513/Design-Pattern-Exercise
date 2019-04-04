@@ -1,6 +1,7 @@
 package strategy;
 
 public abstract class Duck {
+	
 	abstract String display();
 	
 	public String quack() {
