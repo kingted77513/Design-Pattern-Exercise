@@ -1,19 +1,19 @@
-package strategy.dock.test;
+package strategy.duck.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import strategy.duck.RedHeadDuck;
+import strategy.duck.MallardDuck;
 
-class RedHeadDuckTest {
+class MallardDuckTest {
 	
-	RedHeadDuck duck;
+	MallardDuck duck;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		duck = new RedHeadDuck();
+		duck = new MallardDuck();
 	}
 
 	@Test
@@ -32,11 +32,11 @@ class RedHeadDuckTest {
 	
 	@Test
 	void testDisplay() {
-		String expected = "I'm a real Red Headed duck";
+		String expected = "I'm a real Mallard duck";
 		String actual = duck.display();
 		assertEquals(expected, actual);
 	}
-
+	
 	@Test
 	void testFly() {
 		String expected = "Fly";
