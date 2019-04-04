@@ -37,7 +37,7 @@ class RubberDuckTest {
 		assertEquals(expected, actual);
 	}
 
-	// @Test
+	@Test
 	void testFly() {
 		String expected = "I can't fly";
 		String actual = duck.fly();
