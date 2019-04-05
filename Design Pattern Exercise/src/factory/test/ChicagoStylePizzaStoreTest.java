@@ -6,25 +6,25 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import factory.Pizza;
-import factory.PizzaStore;
+import factory.chicago.ChicagoStylePizzaStore;
 
-class PizzaStoreTest {
+class ChicagoStylePizzaStoreTest {
 	
-	PizzaStore store;
+	ChicagoStylePizzaStore store;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		store = new PizzaStore();
+		store = new ChicagoStylePizzaStore();
 	}
-
+	
 	@Test
-	void testOrderSimpleCheesePizza() {
-		String excepted = "Cheese Pizza";
+	void testOrderChicagoStyleCheesePizza() {
+		String excepted = "Chicago Style Deep Dish Cheese Pizza";
 		String pizzaType = "cheese";
 		String actual = getPizzaNameByPizzaType(pizzaType);
 		assertEquals(excepted, actual);
 	}
-
+	
 	private String getPizzaNameByPizzaType(String pizzaType) {
 		Pizza pizza = store.orderPizza(pizzaType);
 		String actual = pizza.getName();
