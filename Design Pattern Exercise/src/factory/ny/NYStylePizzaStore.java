@@ -4,6 +4,8 @@ import factory.Pizza;
 import factory.PizzaStore;
 
 public class NYStylePizzaStore extends PizzaStore {
+	NYPizzaFactory factory;
+	
 	public NYStylePizzaStore() {
 		factory = new NYPizzaFactory(); 
 	}

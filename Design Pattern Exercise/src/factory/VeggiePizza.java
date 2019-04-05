@@ -1,15 +1,17 @@
 package factory;
 
 public class VeggiePizza extends Pizza {
-	public VeggiePizza() {
+	PizzaIngredientFactory ingredientFactory;
+	
+	public VeggiePizza(PizzaIngredientFactory factory) {
 		name = "Veggie Pizza";
-		dough = "Crust";
-		sauce = "Marinara sauce";
-		toppings.add("Shredded mozzarella");
-		toppings.add("Grated parmesan");
-		toppings.add("Diced onion");
-		toppings.add("Sliced mushrooms");
-		toppings.add("Sliced red pepper");
-		toppings.add("Sliced black olives");
+		ingredientFactory = factory;
+	}
+	
+	public String prepare() {
+		dough = ingredientFactory.createDough();
+		sauce = ingredientFactory.createSauce();
+		cheese = ingredientFactory.createCheese();
+		return "Prepared " + name;
 	}
 }

@@ -1,19 +1,22 @@
 package factory.ny;
 
 import factory.Pizza;
+import factory.PizzaIngredientFactory;
 
 public class NYStylePepperoniPizza extends Pizza {
+	PizzaIngredientFactory ingredientFactory;
 
-	public NYStylePepperoniPizza() {
+	public NYStylePepperoniPizza(PizzaIngredientFactory factory) {
 		name = "NY Style Pepperoni Pizza";
-		dough = "Thin Crust Dough";
-		sauce = "Marinara Sauce";
-		
-		toppings.add("Grated Reggiano Cheese");
-		toppings.add("Sliced Pepperoni");
-		toppings.add("Garlic");
-		toppings.add("Onion");
-		toppings.add("Mushrooms");
-		toppings.add("Red Pepper");
+		ingredientFactory = factory;
+	}
+	
+	public String prepare() {
+		dough = ingredientFactory.createDough();
+		sauce = ingredientFactory.createSauce();
+		cheese = ingredientFactory.createCheese();
+		clam = ingredientFactory.createClam();
+		pepperoni = ingredientFactory.createPepperoni();
+		return "Prepared " + name;
 	}
 }

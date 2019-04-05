@@ -1,40 +1,27 @@
 package factory;
 
-import java.util.ArrayList;
+import factory.ingredient.cheese.Cheese;
+import factory.ingredient.clams.Clams;
+import factory.ingredient.dough.Dough;
+import factory.ingredient.pepperoni.Pepperoni;
+import factory.ingredient.sauce.Sauce;
 
 abstract public class Pizza {
 	protected String name;
-	protected String dough;
-	protected String sauce;
-	protected ArrayList<String> toppings = new ArrayList<String>();
-
+	protected Dough dough;
+	protected Sauce sauce;
+	protected Cheese cheese;
+	protected Clams clam;
+	protected Pepperoni pepperoni;
+	
 	public String getName() {
 		return name;
 	}
 
-	public String prepare() {
-		StringBuilder message = new StringBuilder();
-		message.append("Prepare " + name);
-		newLine(message);
-		message.append("Tossing dough...");
-		newLine(message);
-		message.append("Adding sauce...");
-		newLine(message);
-		addToppingMessage(message);
-		return message.toString();
-	}
+	abstract public String prepare();
 	
 	private void newLine(StringBuilder sb) {
 		sb.append(System.lineSeparator());
-	}
-
-	private void addToppingMessage(StringBuilder message) {
-		message.append("Adding toppings: ");
-		newLine(message);
-		for (String topping : toppings) {
-			message.append("   " + topping);
-			newLine(message);
-		}
 	}
 
 	public String bake() {
@@ -51,14 +38,50 @@ abstract public class Pizza {
 	
 	public String getDescription() {
 		StringBuilder message = new StringBuilder();
+		addNameInformation(message);
+		addDoughInformation(message);
+		addSauceInformation(message);
+		addCheeseInformation(message);
+		addClamInformation(message);
+		addPepperoniInformation(message);
+		return message.toString();
+	}
+
+	private StringBuilder addNameInformation(StringBuilder message) {	
 		message.append("---- " + name + " ----");
 		newLine(message);
-		message.append("Dough: " + dough);
+		return message;
+	}
+	
+	private void addDoughInformation(StringBuilder message) {
+		message.append("Dough: " + dough.getDescription());
 		newLine(message);
-		message.append("Sauce: " + sauce);
+	}
+	
+	private void addSauceInformation(StringBuilder message) {
+		message.append("Sauce: " + sauce.getDescription());
 		newLine(message);
-		addToppingMessage(message);
-		return message.toString();
+	}
+	
+	private void addCheeseInformation(StringBuilder message) {
+		if (cheese != null) {
+			message.append("Cheese: " + cheese.getDescription());
+			newLine(message);
+		}
+	}
+
+	private void addClamInformation(StringBuilder message) {
+		if (clam != null) {
+			message.append("Clams: " + clam.getDescription());
+			newLine(message);
+		}
+	}
+	
+	private void addPepperoniInformation(StringBuilder message) {
+		if (pepperoni != null) {
+			message.append("Pepperoni: " + pepperoni.getDescription());
+			newLine(message);
+		}
 	}
 }
 

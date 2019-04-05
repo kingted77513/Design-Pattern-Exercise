@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import factory.PizzaIngredientFactory;
+import factory.chicago.ChicagoPizzaIngredientFactory;
 import factory.chicago.ChicagoStyleCheesePizza;
 
 class ChicagoStyleCheesePizzaTest {
@@ -13,7 +15,9 @@ class ChicagoStyleCheesePizzaTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new ChicagoStyleCheesePizza();
+		PizzaIngredientFactory ingredientFactory =
+				new ChicagoPizzaIngredientFactory();
+		pizza = new ChicagoStyleCheesePizza(ingredientFactory);
 	}
 	
 	@Test
@@ -21,36 +25,11 @@ class ChicagoStyleCheesePizzaTest {
 		String excepted = "Chicago Style Deep Dish Cheese Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
-		
-		excepted = getPizzaDescription();
-		actual = pizza.getDescription();
-		assertEquals(excepted, actual);
-	}
-	
-	private String getPizzaDescription() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("---- Chicago Style Deep Dish Cheese Pizza ----");
-		sb.append(System.lineSeparator());
-		sb.append("Dough: Extra Thick Crust Dough");
-		sb.append(System.lineSeparator());
-		sb.append("Sauce: Plum Tomato Sauce");
-		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
-		
-		String excepted = sb.toString();
-		return excepted;
-	}
-	
-	private void addToppingInformation(StringBuilder sb) {
-		sb.append("Adding toppings: ");
-		sb.append(System.lineSeparator());
-		sb.append("   Shredded Mozzarella Cheese");
-		sb.append(System.lineSeparator());
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = getPrepareMessage();
+		String excepted = "Prepared Chicago Style Deep Dish Cheese Pizza";
 		String actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
@@ -65,17 +44,22 @@ class ChicagoStyleCheesePizzaTest {
 		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
+		
+		excepted = getPizzaDescription();
+		actual = pizza.getDescription();
+		assertEquals(excepted, actual);
 	}
-
-	private String getPrepareMessage() {
+	
+	private String getPizzaDescription() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare Chicago Style Deep Dish Cheese Pizza");
+		sb.append("---- Chicago Style Deep Dish Cheese Pizza ----");
 		sb.append(System.lineSeparator());
-		sb.append("Tossing dough...");
+		sb.append("Dough: ThickCrust style extra thick crust dough");
 		sb.append(System.lineSeparator());
-		sb.append("Adding sauce...");
+		sb.append("Sauce: Tomato sauce with plum tomatoes");
 		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
+		sb.append("Cheese: Shredded Mozzarella");
+		sb.append(System.lineSeparator());
 		
 		String excepted = sb.toString();
 		return excepted;

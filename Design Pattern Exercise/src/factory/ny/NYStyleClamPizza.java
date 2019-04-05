@@ -1,15 +1,21 @@
 package factory.ny;
 
 import factory.Pizza;
+import factory.PizzaIngredientFactory;
 
 public class NYStyleClamPizza extends Pizza {
+	PizzaIngredientFactory ingredientFactory;
 
-	public NYStyleClamPizza() {
+	public NYStyleClamPizza(PizzaIngredientFactory factory) {
 		name = "NY Style Clam Pizza";
-		dough = "Thin Crust Dough";
-		sauce = "Marinara Sauce";
-		
-		toppings.add("Grated Reggiano Cheese");
-		toppings.add("Fresh Clams from Long Island Sound");
+		ingredientFactory = factory;
+	}
+	
+	public String prepare() {
+		dough = ingredientFactory.createDough();
+		sauce = ingredientFactory.createSauce();
+		cheese = ingredientFactory.createCheese();
+		clam = ingredientFactory.createClam();
+		return "Prepared " + name;
 	}
 }

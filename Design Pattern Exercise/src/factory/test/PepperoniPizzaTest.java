@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import factory.PepperoniPizza;
+import factory.ny.NYPizzaIngredientFactory;
 
 class PepperoniPizzaTest {
 	
@@ -13,7 +14,9 @@ class PepperoniPizzaTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new PepperoniPizza();
+		NYPizzaIngredientFactory factory
+			= new NYPizzaIngredientFactory();
+		pizza = new PepperoniPizza(factory);
 	}
 	
 	@Test
@@ -21,35 +24,6 @@ class PepperoniPizzaTest {
 		String excepted = "Pepperoni Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
-		
-		excepted = getPizzaDescription();
-		actual = pizza.getDescription();
-		assertEquals(excepted, actual);
-	}
-	
-	private String getPizzaDescription() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("---- Pepperoni Pizza ----");
-		sb.append(System.lineSeparator());
-		sb.append("Dough: Crust");
-		sb.append(System.lineSeparator());
-		sb.append("Sauce: Marinara sauce");
-		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
-		
-		String excepted = sb.toString();
-		return excepted;
-	}
-	
-	private void addToppingInformation(StringBuilder sb) {
-		sb.append("Adding toppings: ");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced Pepperoni");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced Onion");
-		sb.append(System.lineSeparator());
-		sb.append("   Grated parmesan cheese");
-		sb.append(System.lineSeparator());
 	}
 
 	@Test
@@ -58,7 +32,7 @@ class PepperoniPizzaTest {
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = getPrepareMessage();
+		excepted = "Prepared Pepperoni Pizza";
 		actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
@@ -73,17 +47,24 @@ class PepperoniPizzaTest {
 		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
+		
+		excepted = getPizzaDescription();
+		actual = pizza.getDescription();
+		assertEquals(excepted, actual);
 	}
-
-	private String getPrepareMessage() {
+	
+	private String getPizzaDescription() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare Pepperoni Pizza");
+		sb.append("---- Pepperoni Pizza ----");
 		sb.append(System.lineSeparator());
-		sb.append("Tossing dough...");
+		sb.append("Dough: Thin Crust Dough");
 		sb.append(System.lineSeparator());
-		sb.append("Adding sauce...");
+		sb.append("Sauce: Marinara Sauce");
 		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
+		sb.append("Cheese: Reggiano Cheese");
+		sb.append(System.lineSeparator());
+		sb.append("Pepperoni: Sliced Pepperoni");
+		sb.append(System.lineSeparator());
 		
 		String excepted = sb.toString();
 		return excepted;

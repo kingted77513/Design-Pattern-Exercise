@@ -1,15 +1,22 @@
 package factory.chicago;
 
 import factory.Pizza;
+import factory.PizzaIngredientFactory;
 
 public class ChicagoStyleClamPizza extends Pizza {
-	public ChicagoStyleClamPizza() {
+	PizzaIngredientFactory ingredientFactory;
+	
+	public ChicagoStyleClamPizza(PizzaIngredientFactory factory) {
 		name = "Chicago Style Clam Pizza";
-		dough = "Extra Thick Crust Dough";
-		sauce = "Plum Tomato Sauce";
-		
-		toppings.add("Shredded Mozzarella Cheese");
-		toppings.add("Frozen Clams from Chesapeake Bay");
+		ingredientFactory = factory;
+	}
+	
+	public String prepare() {
+		dough = ingredientFactory.createDough();
+		sauce = ingredientFactory.createSauce();
+		cheese = ingredientFactory.createCheese();
+		clam = ingredientFactory.createClam();
+		return "Prepared " + name;
 	}
  
 	public String cut() {

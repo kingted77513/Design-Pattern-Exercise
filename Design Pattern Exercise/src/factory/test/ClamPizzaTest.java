@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import factory.ClamPizza;
+import factory.ny.NYPizzaIngredientFactory;
 
 class ClamPizzaTest {
 	
@@ -13,7 +14,9 @@ class ClamPizzaTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new ClamPizza();
+		NYPizzaIngredientFactory factory
+			= new NYPizzaIngredientFactory();
+		pizza = new ClamPizza(factory);
 	}
 	
 	@Test
@@ -21,29 +24,11 @@ class ClamPizzaTest {
 		String excepted = "Clam Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
-		
-		excepted = getPizzaDescription();
-		actual = pizza.getDescription();
-		assertEquals(excepted, actual);
-	}
-	
-	private String getPizzaDescription() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("---- Clam Pizza ----");
-		sb.append(System.lineSeparator());
-		sb.append("Dough: Thin crust");
-		sb.append(System.lineSeparator());
-		sb.append("Sauce: White garlic sauce");
-		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
-		
-		String excepted = sb.toString();
-		return excepted;
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = getPrepareMessage();
+		String excepted = "Prepared Clam Pizza";
 		String actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
@@ -58,28 +43,26 @@ class ClamPizzaTest {
 		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
+		
+		excepted = getPizzaDescription();
+		actual = pizza.getDescription();
+		assertEquals(excepted, actual);
 	}
-
-	private String getPrepareMessage() {
+	
+	private String getPizzaDescription() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare Clam Pizza");
+		sb.append("---- Clam Pizza ----");
 		sb.append(System.lineSeparator());
-		sb.append("Tossing dough...");
+		sb.append("Dough: Thin Crust Dough");
 		sb.append(System.lineSeparator());
-		sb.append("Adding sauce...");
+		sb.append("Sauce: Marinara Sauce");
 		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
+		sb.append("Cheese: Reggiano Cheese");
+		sb.append(System.lineSeparator());
+		sb.append("Clams: Fresh Clams from Long Island Sound");
+		sb.append(System.lineSeparator());
 		
 		String excepted = sb.toString();
 		return excepted;
-	}
-
-	private void addToppingInformation(StringBuilder sb) {
-		sb.append("Adding toppings: ");
-		sb.append(System.lineSeparator());
-		sb.append("   Clams");
-		sb.append(System.lineSeparator());
-		sb.append("   Grated parmesan cheese");
-		sb.append(System.lineSeparator());
 	}
 }

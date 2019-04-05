@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import factory.CheesePizza;
+import factory.ny.NYPizzaIngredientFactory;
 
 class CheesePizzaTest {
 	
@@ -13,7 +14,9 @@ class CheesePizzaTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new CheesePizza();
+		NYPizzaIngredientFactory factory
+			= new NYPizzaIngredientFactory();
+		pizza = new CheesePizza(factory);
 	}
 	
 	@Test
@@ -21,38 +24,11 @@ class CheesePizzaTest {
 		String excepted = "Cheese Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
-		
-		excepted = getPizzaDescription();
-		actual = pizza.getDescription();
-		assertEquals(excepted, actual);
-	}
-	
-	private String getPizzaDescription() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("---- Cheese Pizza ----");
-		sb.append(System.lineSeparator());
-		sb.append("Dough: Regular Crust");
-		sb.append(System.lineSeparator());
-		sb.append("Sauce: Marinara Pizza Sauce");
-		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
-		
-		String excepted = sb.toString();
-		return excepted;
-	}
-	
-	private void addToppingInformation(StringBuilder sb) {
-		sb.append("Adding toppings: ");
-		sb.append(System.lineSeparator());
-		sb.append("   Fresh Mozzarella");
-		sb.append(System.lineSeparator());
-		sb.append("   Parmesan");
-		sb.append(System.lineSeparator());
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = getPrepareMessage();
+		String excepted = "Prepared Cheese Pizza";
 		String actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
@@ -67,17 +43,22 @@ class CheesePizzaTest {
 		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
+		
+		excepted = getPizzaDescription();
+		actual = pizza.getDescription();
+		assertEquals(excepted, actual);
 	}
-
-	private String getPrepareMessage() {
+	
+	private String getPizzaDescription() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare Cheese Pizza");
+		sb.append("---- Cheese Pizza ----");
 		sb.append(System.lineSeparator());
-		sb.append("Tossing dough...");
+		sb.append("Dough: Thin Crust Dough");
 		sb.append(System.lineSeparator());
-		sb.append("Adding sauce...");
+		sb.append("Sauce: Marinara Sauce");
 		sb.append(System.lineSeparator());
-		addToppingInformation(sb);
+		sb.append("Cheese: Reggiano Cheese");
+		sb.append(System.lineSeparator());
 		
 		String excepted = sb.toString();
 		return excepted;

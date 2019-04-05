@@ -1,11 +1,6 @@
 package factory;
 
 public abstract class PizzaStore {
-	protected SimplePizzaFactory factory;
-	
-	public PizzaStore() {
-		factory = new SimplePizzaFactory(); 
-	}
 	
 	public Pizza orderPizza(String type) {
 		Pizza pizza = createPizza(type);
