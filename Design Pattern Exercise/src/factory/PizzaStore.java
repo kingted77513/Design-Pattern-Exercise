@@ -1,6 +1,6 @@
 package factory;
 
-public class PizzaStore {
+public abstract class PizzaStore {
 	protected SimplePizzaFactory factory;
 	
 	public PizzaStore() {
@@ -8,7 +8,7 @@ public class PizzaStore {
 	}
 	
 	public Pizza orderPizza(String type) {
-		Pizza pizza = factory.createPizza(type);
+		Pizza pizza = createPizza(type);
  
 		pizza.prepare();
 		pizza.bake();
@@ -18,4 +18,5 @@ public class PizzaStore {
 		return pizza;
 	}
 
+	abstract protected Pizza createPizza(String type);
 }
