@@ -15,15 +15,36 @@ class NYStyleClamPizzaTest {
 	void setUp() throws Exception {
 		pizza = new NYStyleClamPizza();
 	}
-
+	
 	@Test
-	void testCookPizza() {
+	void testGetPizzaInformation() {
 		String excepted = "NY Style Clam Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = getPrepareMessage();
-		actual = pizza.prepare();
+		excepted = getPizzaDescription();
+		actual = pizza.getDescription();
+		assertEquals(excepted, actual);
+	}
+	
+	private String getPizzaDescription() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("---- NY Style Clam Pizza ----");
+		sb.append(System.lineSeparator());
+		sb.append("Dough: Thin Crust Dough");
+		sb.append(System.lineSeparator());
+		sb.append("Sauce: Marinara Sauce");
+		sb.append(System.lineSeparator());
+		addToppingInformation(sb);
+		
+		String excepted = sb.toString();
+		return excepted;
+	}
+
+	@Test
+	void testCookPizza() {
+		String excepted = getPrepareMessage();
+		String actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
 		excepted = "Bake for 25 minutes at 350";
@@ -47,14 +68,18 @@ class NYStyleClamPizzaTest {
 		sb.append(System.lineSeparator());
 		sb.append("Adding sauce...");
 		sb.append(System.lineSeparator());
+		addToppingInformation(sb);
+		
+		String excepted = sb.toString();
+		return excepted;
+	}
+
+	private void addToppingInformation(StringBuilder sb) {
 		sb.append("Adding toppings: ");
 		sb.append(System.lineSeparator());
 		sb.append("   Grated Reggiano Cheese");
 		sb.append(System.lineSeparator());
 		sb.append("   Fresh Clams from Long Island Sound");
 		sb.append(System.lineSeparator());
-		
-		String excepted = sb.toString();
-		return excepted;
 	}
 }

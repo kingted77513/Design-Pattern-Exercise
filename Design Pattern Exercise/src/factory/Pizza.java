@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 abstract public class Pizza {
 	protected String name;
+	protected String dough;
+	protected String sauce;
 	protected ArrayList<String> toppings = new ArrayList<String>();
 
 	public String getName() {
@@ -11,27 +13,27 @@ abstract public class Pizza {
 	}
 
 	public String prepare() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare " + name);
-		newLine(sb);
-		sb.append("Tossing dough...");
-		newLine(sb);
-		sb.append("Adding sauce...");
-		newLine(sb);
-		addTopping(sb);
-		return sb.toString();
+		StringBuilder message = new StringBuilder();
+		message.append("Prepare " + name);
+		newLine(message);
+		message.append("Tossing dough...");
+		newLine(message);
+		message.append("Adding sauce...");
+		newLine(message);
+		addTopping(message);
+		return message.toString();
 	}
 	
 	private void newLine(StringBuilder sb) {
 		sb.append(System.lineSeparator());
 	}
 
-	private void addTopping(StringBuilder sb) {
-		sb.append("Adding toppings: ");
-		newLine(sb);
+	private void addTopping(StringBuilder message) {
+		message.append("Adding toppings: ");
+		newLine(message);
 		for (String topping : toppings) {
-			sb.append("   " + topping);
-			newLine(sb);
+			message.append("   " + topping);
+			newLine(message);
 		}
 	}
 
@@ -45,6 +47,18 @@ abstract public class Pizza {
 
 	public String box() {
 		return "Place pizza in official PizzaStore box";
+	}
+	
+	public String getDescription() {
+		StringBuilder message = new StringBuilder();
+		message.append("---- " + name + " ----");
+		newLine(message);
+		message.append("Dough: " + dough);
+		newLine(message);
+		message.append("Sauce: " + sauce);
+		newLine(message);
+		addTopping(message);
+		return message.toString();
 	}
 }
 

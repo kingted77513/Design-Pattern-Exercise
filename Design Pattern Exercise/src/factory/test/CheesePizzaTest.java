@@ -15,15 +15,45 @@ class CheesePizzaTest {
 	void setUp() throws Exception {
 		pizza = new CheesePizza();
 	}
-
+	
 	@Test
-	void testCookPizza() {
+	void testGetPizzaInformation() {
 		String excepted = "Cheese Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = getPrepareMessage();
-		actual = pizza.prepare();
+		excepted = getPizzaDescription();
+		actual = pizza.getDescription();
+		assertEquals(excepted, actual);
+	}
+	
+	private String getPizzaDescription() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("---- Cheese Pizza ----");
+		sb.append(System.lineSeparator());
+		sb.append("Dough: Regular Crust");
+		sb.append(System.lineSeparator());
+		sb.append("Sauce: Marinara Pizza Sauce");
+		sb.append(System.lineSeparator());
+		addToppingInformation(sb);
+		
+		String excepted = sb.toString();
+		return excepted;
+	}
+	
+	private void addToppingInformation(StringBuilder sb) {
+		sb.append("Adding toppings: ");
+		sb.append(System.lineSeparator());
+		sb.append("   Fresh Mozzarella");
+		sb.append(System.lineSeparator());
+		sb.append("   Parmesan");
+		sb.append(System.lineSeparator());
+	}
+
+	@Test
+	void testCookPizza() {
+		String excepted = getPrepareMessage();
+		String actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
 		excepted = "Bake for 25 minutes at 350";
@@ -47,12 +77,7 @@ class CheesePizzaTest {
 		sb.append(System.lineSeparator());
 		sb.append("Adding sauce...");
 		sb.append(System.lineSeparator());
-		sb.append("Adding toppings: ");
-		sb.append(System.lineSeparator());
-		sb.append("   Fresh Mozzarella");
-		sb.append(System.lineSeparator());
-		sb.append("   Parmesan");
-		sb.append(System.lineSeparator());
+		addToppingInformation(sb);
 		
 		String excepted = sb.toString();
 		return excepted;
