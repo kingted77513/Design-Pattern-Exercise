@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import factory.Pizza;
 import factory.PizzaStore;
+import factory.SimplePizzaFactory;
 
 class PizzaStoreTest {
 	
@@ -14,7 +15,8 @@ class PizzaStoreTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		store = new PizzaStore();
+		SimplePizzaFactory factory = new SimplePizzaFactory();
+		store = new PizzaStore(factory);
 	}
 
 	@Test
@@ -29,29 +31,5 @@ class PizzaStoreTest {
 		Pizza pizza = store.orderPizza(pizzaType);
 		String actual = pizza.getName();
 		return actual;
-	}
-	
-	@Test
-	void testOrderPepperoniPizza() {
-		String excepted = "Pepperoni Pizza";
-		String pizzaType = "pepperoni";
-		String actual = getPizzaNameByPizzaType(pizzaType);
-		assertEquals(excepted, actual);
-	}
-	
-	@Test
-	void testOrderClamPizza() {
-		String excepted = "Clam Pizza";
-		String pizzaType = "clam";
-		String actual = getPizzaNameByPizzaType(pizzaType);
-		assertEquals(excepted, actual);
-	}
-	
-	@Test
-	void testOrderVeggiePizza() {
-		String excepted = "Veggie Pizza";
-		String pizzaType = "veggie";
-		String actual = getPizzaNameByPizzaType(pizzaType);
-		assertEquals(excepted, actual);
 	}
 }
