@@ -20,7 +20,7 @@ abstract public class Pizza {
 		newLine(message);
 		message.append("Adding sauce...");
 		newLine(message);
-		addTopping(message);
+		addToppingMessage(message);
 		return message.toString();
 	}
 	
@@ -28,7 +28,7 @@ abstract public class Pizza {
 		sb.append(System.lineSeparator());
 	}
 
-	private void addTopping(StringBuilder message) {
+	private void addToppingMessage(StringBuilder message) {
 		message.append("Adding toppings: ");
 		newLine(message);
 		for (String topping : toppings) {
@@ -57,7 +57,7 @@ abstract public class Pizza {
 		newLine(message);
 		message.append("Sauce: " + sauce);
 		newLine(message);
-		addTopping(message);
+		addToppingMessage(message);
 		return message.toString();
 	}
 }
