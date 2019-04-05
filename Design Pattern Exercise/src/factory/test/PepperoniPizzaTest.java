@@ -22,21 +22,41 @@ class PepperoniPizzaTest {
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = "Preparing Pepperoni Pizza";
+		excepted = getPrepareMessage();
 		actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
-		excepted = "Baking Pepperoni Pizza";
+		excepted = "Bake for 25 minutes at 350";
 		actual = pizza.bake();
 		assertEquals(excepted, actual);
 		
-		excepted = "Cutting Pepperoni Pizza";
+		excepted = "Cut the pizza into diagonal slices";
 		actual = pizza.cut();
 		assertEquals(excepted, actual);
 		
-		excepted = "Boxing Pepperoni Pizza";
+		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
 	}
 
+	private String getPrepareMessage() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Prepare Pepperoni Pizza");
+		sb.append(System.lineSeparator());
+		sb.append("Tossing dough...");
+		sb.append(System.lineSeparator());
+		sb.append("Adding sauce...");
+		sb.append(System.lineSeparator());
+		sb.append("Adding toppings: ");
+		sb.append(System.lineSeparator());
+		sb.append("   Sliced Pepperoni");
+		sb.append(System.lineSeparator());
+		sb.append("   Sliced Onion");
+		sb.append(System.lineSeparator());
+		sb.append("   Grated parmesan cheese");
+		sb.append(System.lineSeparator());
+		
+		String excepted = sb.toString();
+		return excepted;
+	}
 }

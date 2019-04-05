@@ -1,24 +1,24 @@
-package factory.test;
+package factory.ny.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import factory.VeggiePizza;
+import factory.ny.NYStyleClamPizza;
 
-class VeggiePizzaTest {
+class NYStyleClamPizzaTest {
 	
-	VeggiePizza pizza;
+	NYStyleClamPizza pizza;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new VeggiePizza();
+		pizza = new NYStyleClamPizza();
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = "Veggie Pizza";
+		String excepted = "NY Style Clam Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
@@ -41,7 +41,7 @@ class VeggiePizzaTest {
 
 	private String getPrepareMessage() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare Veggie Pizza");
+		sb.append("Prepare NY Style Clam Pizza");
 		sb.append(System.lineSeparator());
 		sb.append("Tossing dough...");
 		sb.append(System.lineSeparator());
@@ -49,17 +49,9 @@ class VeggiePizzaTest {
 		sb.append(System.lineSeparator());
 		sb.append("Adding toppings: ");
 		sb.append(System.lineSeparator());
-		sb.append("   Shredded mozzarella");
+		sb.append("   Grated Reggiano Cheese");
 		sb.append(System.lineSeparator());
-		sb.append("   Grated parmesan");
-		sb.append(System.lineSeparator());
-		sb.append("   Diced onion");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced mushrooms");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced red pepper");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced black olives");
+		sb.append("   Fresh Clams from Long Island Sound");
 		sb.append(System.lineSeparator());
 		
 		String excepted = sb.toString();

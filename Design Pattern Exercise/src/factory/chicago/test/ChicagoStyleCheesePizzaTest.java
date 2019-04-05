@@ -1,4 +1,4 @@
-package factory.test.chicago;
+package factory.chicago.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,11 +22,11 @@ class ChicagoStyleCheesePizzaTest {
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = "Preparing Chicago Style Deep Dish Cheese Pizza";
+		excepted = getPrepareMessage();
 		actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
-		excepted = "Baking Chicago Style Deep Dish Cheese Pizza";
+		excepted = "Bake for 25 minutes at 350";
 		actual = pizza.bake();
 		assertEquals(excepted, actual);
 		
@@ -34,9 +34,25 @@ class ChicagoStyleCheesePizzaTest {
 		actual = pizza.cut();
 		assertEquals(excepted, actual);
 		
-		excepted = "Boxing Chicago Style Deep Dish Cheese Pizza";
+		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
 	}
 
+	private String getPrepareMessage() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Prepare Chicago Style Deep Dish Cheese Pizza");
+		sb.append(System.lineSeparator());
+		sb.append("Tossing dough...");
+		sb.append(System.lineSeparator());
+		sb.append("Adding sauce...");
+		sb.append(System.lineSeparator());
+		sb.append("Adding toppings: ");
+		sb.append(System.lineSeparator());
+		sb.append("   Shredded Mozzarella Cheese");
+		sb.append(System.lineSeparator());
+		
+		String excepted = sb.toString();
+		return excepted;
+	}
 }

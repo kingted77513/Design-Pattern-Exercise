@@ -1,24 +1,24 @@
-package factory.test;
+package factory.chicago.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import factory.VeggiePizza;
+import factory.chicago.ChicagoStyleVeggiePizza;
 
-class VeggiePizzaTest {
+class ChicagoStyleVeggiePizzaTest {
 	
-	VeggiePizza pizza;
+	ChicagoStyleVeggiePizza pizza;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new VeggiePizza();
+		pizza = new ChicagoStyleVeggiePizza();
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = "Veggie Pizza";
+		String excepted = "Chicago Deep Dish Veggie Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
@@ -30,7 +30,7 @@ class VeggiePizzaTest {
 		actual = pizza.bake();
 		assertEquals(excepted, actual);
 		
-		excepted = "Cut the pizza into diagonal slices";
+		excepted = "Cutting the pizza into square slices";
 		actual = pizza.cut();
 		assertEquals(excepted, actual);
 		
@@ -41,7 +41,7 @@ class VeggiePizzaTest {
 
 	private String getPrepareMessage() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Prepare Veggie Pizza");
+		sb.append("Prepare Chicago Deep Dish Veggie Pizza");
 		sb.append(System.lineSeparator());
 		sb.append("Tossing dough...");
 		sb.append(System.lineSeparator());
@@ -49,17 +49,13 @@ class VeggiePizzaTest {
 		sb.append(System.lineSeparator());
 		sb.append("Adding toppings: ");
 		sb.append(System.lineSeparator());
-		sb.append("   Shredded mozzarella");
+		sb.append("   Shredded Mozzarella Cheese");
 		sb.append(System.lineSeparator());
-		sb.append("   Grated parmesan");
+		sb.append("   Black Olives");
 		sb.append(System.lineSeparator());
-		sb.append("   Diced onion");
+		sb.append("   Spinach");
 		sb.append(System.lineSeparator());
-		sb.append("   Sliced mushrooms");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced red pepper");
-		sb.append(System.lineSeparator());
-		sb.append("   Sliced black olives");
+		sb.append("   Eggplant");
 		sb.append(System.lineSeparator());
 		
 		String excepted = sb.toString();

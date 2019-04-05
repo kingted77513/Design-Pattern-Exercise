@@ -1,4 +1,4 @@
-package factory.test.ny;
+package factory.ny.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,21 +22,37 @@ class NYStyleCheesePizzaTest {
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = "Preparing NY Style Sauce and Cheese Pizza";
+		excepted = getPrepareMessage();
 		actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
-		excepted = "Baking NY Style Sauce and Cheese Pizza";
+		excepted = "Bake for 25 minutes at 350";
 		actual = pizza.bake();
 		assertEquals(excepted, actual);
 		
-		excepted = "Cutting NY Style Sauce and Cheese Pizza";
+		excepted = "Cut the pizza into diagonal slices";
 		actual = pizza.cut();
 		assertEquals(excepted, actual);
 		
-		excepted = "Boxing NY Style Sauce and Cheese Pizza";
+		excepted = "Place pizza in official PizzaStore box";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
 	}
 
+	private String getPrepareMessage() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Prepare NY Style Sauce and Cheese Pizza");
+		sb.append(System.lineSeparator());
+		sb.append("Tossing dough...");
+		sb.append(System.lineSeparator());
+		sb.append("Adding sauce...");
+		sb.append(System.lineSeparator());
+		sb.append("Adding toppings: ");
+		sb.append(System.lineSeparator());
+		sb.append("   Grated Reggiano Cheese");
+		sb.append(System.lineSeparator());
+		
+		String excepted = sb.toString();
+		return excepted;
+	}
 }
