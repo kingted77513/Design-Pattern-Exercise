@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import factory.ChicagoPizzaFactory;
-import factory.NYPizzaFactory;
 import factory.Pizza;
 import factory.PizzaStore;
 import factory.SimplePizzaFactory;
+import factory.chicago.ChicagoPizzaFactory;
+import factory.ny.NYPizzaFactory;
 
 class PizzaStoreTest {
 	

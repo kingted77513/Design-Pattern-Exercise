@@ -1,4 +1,7 @@
-package factory;
+package factory.ny;
+
+import factory.Pizza;
+import factory.SimplePizzaFactory;
 
 public class NYPizzaFactory extends SimplePizzaFactory{
 

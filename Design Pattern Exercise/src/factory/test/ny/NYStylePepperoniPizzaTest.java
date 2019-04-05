@@ -1,40 +1,40 @@
-package factory.test;
+package factory.test.ny;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import factory.ChicagoStyleVeggiePizza;
+import factory.ny.NYStylePepperoniPizza;
 
-class ChicagoStyleVeggiePizzaTest {
+class NYStylePepperoniPizzaTest {
 	
-	ChicagoStyleVeggiePizza pizza;
+	NYStylePepperoniPizza pizza;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new ChicagoStyleVeggiePizza();
+		pizza = new NYStylePepperoniPizza();
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = "Chicago Deep Dish Veggie Pizza";
+		String excepted = "NY Style Pepperoni Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = "Preparing Chicago Deep Dish Veggie Pizza";
+		excepted = "Preparing NY Style Pepperoni Pizza";
 		actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
-		excepted = "Baking Chicago Deep Dish Veggie Pizza";
+		excepted = "Baking NY Style Pepperoni Pizza";
 		actual = pizza.bake();
 		assertEquals(excepted, actual);
 		
-		excepted = "Cutting the pizza into square slices";
+		excepted = "Cutting NY Style Pepperoni Pizza";
 		actual = pizza.cut();
 		assertEquals(excepted, actual);
 		
-		excepted = "Boxing Chicago Deep Dish Veggie Pizza";
+		excepted = "Boxing NY Style Pepperoni Pizza";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
 	}

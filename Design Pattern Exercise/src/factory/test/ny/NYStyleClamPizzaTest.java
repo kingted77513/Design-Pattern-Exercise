@@ -1,11 +1,11 @@
-package factory.test;
+package factory.test.ny;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import factory.NYStyleClamPizza;
+import factory.ny.NYStyleClamPizza;
 
 class NYStyleClamPizzaTest {
 	

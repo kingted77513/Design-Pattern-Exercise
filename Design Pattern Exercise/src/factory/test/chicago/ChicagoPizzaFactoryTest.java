@@ -1,12 +1,12 @@
-package factory.test;
+package factory.test.chicago;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import factory.ChicagoPizzaFactory;
 import factory.Pizza;
+import factory.chicago.ChicagoPizzaFactory;
 
 class ChicagoPizzaFactoryTest {
 	

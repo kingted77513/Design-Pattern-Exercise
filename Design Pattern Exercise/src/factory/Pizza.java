@@ -1,7 +1,7 @@
 package factory;
 
 abstract public class Pizza {
-	String name;
+	protected String name;
 
 	public String getName() {
 		return name;

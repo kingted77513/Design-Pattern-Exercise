@@ -1,4 +1,6 @@
-package factory;
+package factory.chicago;
+
+import factory.Pizza;
 
 public class ChicagoStyleVeggiePizza extends Pizza {
 	public ChicagoStyleVeggiePizza() {

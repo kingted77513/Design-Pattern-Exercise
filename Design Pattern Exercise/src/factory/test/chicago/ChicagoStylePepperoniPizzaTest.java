@@ -1,32 +1,32 @@
-package factory.test;
+package factory.test.chicago;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import factory.ChicagoStyleCheesePizza;
+import factory.chicago.ChicagoStylePepperoniPizza;
 
-class ChicagoStyleCheesePizzaTest {
+class ChicagoStylePepperoniPizzaTest {
 	
-	ChicagoStyleCheesePizza pizza;
+	ChicagoStylePepperoniPizza pizza;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		pizza = new ChicagoStyleCheesePizza();
+		pizza = new ChicagoStylePepperoniPizza();
 	}
 
 	@Test
 	void testCookPizza() {
-		String excepted = "Chicago Style Deep Dish Cheese Pizza";
+		String excepted = "Chicago Style Pepperoni Pizza";
 		String actual = pizza.getName();
 		assertEquals(excepted, actual);
 		
-		excepted = "Preparing Chicago Style Deep Dish Cheese Pizza";
+		excepted = "Preparing Chicago Style Pepperoni Pizza";
 		actual = pizza.prepare();
 		assertEquals(excepted, actual);
 		
-		excepted = "Baking Chicago Style Deep Dish Cheese Pizza";
+		excepted = "Baking Chicago Style Pepperoni Pizza";
 		actual = pizza.bake();
 		assertEquals(excepted, actual);
 		
@@ -34,7 +34,7 @@ class ChicagoStyleCheesePizzaTest {
 		actual = pizza.cut();
 		assertEquals(excepted, actual);
 		
-		excepted = "Boxing Chicago Style Deep Dish Cheese Pizza";
+		excepted = "Boxing Chicago Style Pepperoni Pizza";
 		actual = pizza.box();
 		assertEquals(excepted, actual);
 	}
