@@ -10,7 +10,7 @@ class ChocolateBoilerTest {
 
 	@Test
 	void testMakeHotChocolateBySingleBoiler() {
-		ChocolateBoiler boiler = new ChocolateBoiler();
+		ChocolateBoiler boiler = ChocolateBoiler.getInstance();
 		isInitialStatus(boiler);
 		
 		boiler.fill();
@@ -22,34 +22,40 @@ class ChocolateBoilerTest {
 		boiler.drain();
 		afterDrainOutStatus(boiler);
 	}
-
-	private void afterDrainOutStatus(ChocolateBoiler boiler) {
+	
+	private void isInitialStatus(ChocolateBoiler boiler) {
 		assertTrue(boiler.isEmpty());
-		assertTrue(boiler.isBoiled());
+	}
+	
+	private void afterFillChocolateStatus(ChocolateBoiler boiler) {
+		assertFalse(boiler.isEmpty());
+		assertFalse(boiler.isBoiled());
 	}
 
 	private void afterBoilChocolateStatus(ChocolateBoiler boiler) {
 		assertFalse(boiler.isEmpty());
 		assertTrue(boiler.isBoiled());
 	}
-
-	private void afterFillChocolateStatus(ChocolateBoiler boiler) {
-		assertFalse(boiler.isEmpty());
-		assertFalse(boiler.isBoiled());
-	}
-
-	private void isInitialStatus(ChocolateBoiler boiler) {
+	
+	private void afterDrainOutStatus(ChocolateBoiler boiler) {
 		assertTrue(boiler.isEmpty());
-		assertFalse(boiler.isBoiled());
 	}
 	
 	@Test
 	void testBoilChocolateBeforeFillBySingleBoiler() {
-		ChocolateBoiler boiler = new ChocolateBoiler();
+		ChocolateBoiler boiler = ChocolateBoiler.getInstance();
 		isInitialStatus(boiler);
 		
 		boiler.boil();
 		isInitialStatus(boiler);
+	}
+	
+	@Test
+	void testGetSameInstance() {
+		ChocolateBoiler boiler1 = ChocolateBoiler.getInstance();
+		ChocolateBoiler boiler2 = ChocolateBoiler.getInstance();
+		
+		assertEquals(boiler1, boiler2);
 	}
 
 }
