@@ -5,28 +5,28 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import adapter.MallardDuck;
+import adapter.WildTurkey;
 
-class MallardDuckTest {
+class WildTurkeyTest {
 	
-	MallardDuck duck;
+	WildTurkey turkey;
 
 	@BeforeEach
 	void setUp() throws Exception {
-		duck = new MallardDuck();
+		turkey = new WildTurkey();
 	}
 
 	@Test
-	void testQuack() {
-		String excepted = "Quack";
-		String actual = duck.quack();
+	void testGobble() {
+		String excepted = "Gobble gobble";
+		String actual = turkey.gobble();
 		assertEquals(excepted, actual);
 	}
 	
 	@Test
 	void testFly() {
-		String excepted = "I'm flying";
-		String actual = duck.fly();
+		String excepted = "I'm flying a short distance";
+		String actual = turkey.fly();
 		assertEquals(excepted, actual);
 	}
 
