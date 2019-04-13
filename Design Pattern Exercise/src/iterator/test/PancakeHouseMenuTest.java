@@ -2,11 +2,10 @@ package iterator.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import iterator.Iterator;
 import iterator.MenuItem;
 import iterator.PancakeHouseMenu;
 
@@ -21,31 +20,31 @@ class PancakeHouseMenuTest {
 
 	@Test
 	void testAllMenuCorrect() {
-		ArrayList<MenuItem> menuItems =  menus.getMenuItems();
+		Iterator iterator=  menus.createIterator();
 		MenuItem menu;
 		
-		menu = menuItems.get(0);
+		menu = iterator.next();
 		checkMenuCorrect(menu, 
 				"K&B's Pancake Breakfast", 
 				"Pancakes with scrambled eggs, and toast", 
 				true,
 				2.99);
 		
-		menu = menuItems.get(1);
+		menu = iterator.next();
 		checkMenuCorrect(menu, 
 				"Regular Pancake Breakfast", 
 				"Pancakes with fried eggs, sausage", 
 				false,
 				2.99);
 		
-		menu = menuItems.get(2);
+		menu = iterator.next();
 		checkMenuCorrect(menu, 
 				"Blueberry Pancakes",
 				"Pancakes made with fresh blueberries, and blueberry syrup",
 				true,
 				3.49);
 		
-		menu = menuItems.get(3);
+		menu = iterator.next();
 		checkMenuCorrect(menu, 
 				"Waffles",
 				"Waffles, with your choice of blueberries or strawberries",
