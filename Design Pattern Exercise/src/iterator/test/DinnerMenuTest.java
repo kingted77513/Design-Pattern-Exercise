@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import iterator.DinerMenu;
-import iterator.Iterator;
+import java.util.Iterator;
 import iterator.MenuItem;
 
 class DinnerMenuTest {
@@ -20,7 +20,7 @@ class DinnerMenuTest {
 
 	@Test
 	void testAllMenuCorrect() {
-		Iterator iterator=  menus.createIterator();
+		Iterator<MenuItem> iterator=  menus.createIterator();
 		MenuItem menu;
 		
 		menu = iterator.next();

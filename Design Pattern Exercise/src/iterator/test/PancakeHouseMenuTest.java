@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import iterator.Iterator;
+import java.util.Iterator;
 import iterator.MenuItem;
 import iterator.PancakeHouseMenu;
 
@@ -20,7 +20,7 @@ class PancakeHouseMenuTest {
 
 	@Test
 	void testAllMenuCorrect() {
-		Iterator iterator=  menus.createIterator();
+		Iterator<MenuItem> iterator=  menus.createIterator();
 		MenuItem menu;
 		
 		menu = iterator.next();
