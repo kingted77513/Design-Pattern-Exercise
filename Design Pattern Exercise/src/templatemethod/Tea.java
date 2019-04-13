@@ -1,27 +1,14 @@
 package templatemethod;
 
-public class Tea {
- 
-	void prepareRecipe() {
-		boilWater();
-		steepTeaBag();
-		pourInCup();
-		addLemon();
-	}
- 
-	public String boilWater() {
-		return "Boiling water";
-	}
- 
-	public String steepTeaBag() {
+public class Tea extends CaffeineBeverage{
+
+	@Override
+	public String brew() {
 		return "Steeping the tea";
 	}
- 
-	public String addLemon() {
+
+	@Override
+	public String addCondiments() {
 		return "Adding Lemon";
-	}
- 
-	public String pourInCup() {
-		return "Pouring into cup";
 	}
 }

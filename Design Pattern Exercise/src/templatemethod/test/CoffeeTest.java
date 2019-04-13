@@ -24,9 +24,9 @@ class CoffeeTest {
 	}
 	
 	@Test
-	void testBrewCoffeeGrinds() {
+	void testBrew() {
 		String excepted = "Dripping Coffee through filter";
-		String actual = coffee.brewCoffeeGrinds();
+		String actual = coffee.brew();
 		assertEquals(excepted, actual);
 	}
 	
@@ -38,9 +38,9 @@ class CoffeeTest {
 	}
 	
 	@Test
-	void testAddSugarAndMilk() {
+	void testAddCondiments() {
 		String excepted = "Adding Sugar and Milk";
-		String actual = coffee.addSugarAndMilk();
+		String actual = coffee.addCondiments();
 		assertEquals(excepted, actual);
 	}
 }

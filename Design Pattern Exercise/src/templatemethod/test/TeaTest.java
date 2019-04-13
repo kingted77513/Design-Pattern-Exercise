@@ -24,21 +24,21 @@ class TeaTest {
 	}
 	
 	@Test
-	void testSteepTeaBag() {
+	void testBrew() {
 		String excepted = "Steeping the tea";
-		String actual = tea.steepTeaBag();
+		String actual = tea.brew();
+		assertEquals(excepted, actual);
+	}
+	
+	@Test
+	void testAddCondiments() {
+		String excepted = "Adding Lemon";
+		String actual = tea.addCondiments();
 		assertEquals(excepted, actual);
 	}
 	
 	@Test
 	void testPourInCup() {
-		String excepted = "Adding Lemon";
-		String actual = tea.addLemon();
-		assertEquals(excepted, actual);
-	}
-	
-	@Test
-	void testAddSugarAndMilk() {
 		String excepted = "Pouring into cup";
 		String actual = tea.pourInCup();
 		assertEquals(excepted, actual);
