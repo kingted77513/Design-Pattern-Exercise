@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import state.GumballMachine;
+import state.NoQuarterState;
+import state.SoldOutState;
+import state.State;
 
 class GumballMachineTest {
 	
@@ -14,13 +17,14 @@ class GumballMachineTest {
 	void testNoGumballToSold() {
 		machine = initialGumballMachineWithoutGumball();
 		
-		int exceptedStatus = GumballMachine.SOLD_OUT;
+		Object exceptedStatus = SoldOutState.class;
 		testgetMachineStatus(exceptedStatus);
 		
 		String excepted = "You can't insert a quarter, the machine is sold out";
 		testInsertQuarter(excepted);
 		
-		excepted = "You turned, but there are no gumballs";
+		excepted = "You turned, but there are no gumballs"
+				+ System.lineSeparator() + "No gumball dispensed";
 		testTurnCrank(excepted);
 	}
 	
@@ -30,9 +34,9 @@ class GumballMachineTest {
 		return machine;
 	}
 	
-	private void testgetMachineStatus(int excepted) {
-		int actual = machine.getMachineStatus();
-		assertEquals(excepted, actual);
+	private void testgetMachineStatus(Object excepted) {
+		State actual = machine.getState();
+		assertEquals(excepted, actual.getClass());
 	}
 
 	private void testInsertQuarter(String excepted) {
@@ -48,7 +52,7 @@ class GumballMachineTest {
 	@Test
 	void testSoldFiveGumball() {
 		machine = initialGumballMachineWithFiveGumball();
-		int exceptedStatus = GumballMachine.NO_QUARTER;
+		Object exceptedStatus = NoQuarterState.class;
 		testgetMachineStatus(exceptedStatus);
 		
 		buyAGumball();
@@ -72,16 +76,13 @@ class GumballMachineTest {
 	}
 	
 	private String getTurnCrankMessageAfterSoldAGumball() {
-		int status = machine.getMachineStatus();
+		State status = machine.getState();
 		String message;
-		switch (status) {
-		case GumballMachine.NO_QUARTER:
+		if (status instanceof NoQuarterState) {
 			message = getTurnCrankMessageWhenSoldAGumball();
-			break;
-		case GumballMachine.SOLD_OUT:
+		}else if (status instanceof SoldOutState) {
 			message = getTurnCrankMessageWhenSoldTheLastGumball();
-			break;
-		default:
+		}else {
 			message = "No Message";
 		}
 		return message;
@@ -89,13 +90,13 @@ class GumballMachineTest {
 	
 	private String getTurnCrankMessageWhenSoldAGumball() {
 		String message = "You turned..." + System.lineSeparator() 
-		+ "A gumball comes rolling out the slot";
+		+ "A gumball comes rolling out the slot...";
 		return message;
 	}
 	
 	private String getTurnCrankMessageWhenSoldTheLastGumball() {
 		String message = "You turned..." + System.lineSeparator() 
-		+ "A gumball comes rolling out the slot" + System.lineSeparator()
+		+ "A gumball comes rolling out the slot..." + System.lineSeparator()
 		+ "Oops, out of gumballs!";
 		return message;
 	}

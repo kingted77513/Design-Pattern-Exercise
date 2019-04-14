@@ -2,108 +2,80 @@ package state;
 
 public class GumballMachine {
  
-	final static public int SOLD_OUT = 0;
-	final static public int NO_QUARTER = 1;
-	final static public int HAS_QUARTER = 2;
-	final static public int SOLD = 3;
+	State soldOutState;
+	State noQuarterState;
+	State hasQuarterState;
+	State soldState;
  
-	private int state = SOLD_OUT;
-	private int count = 0;
-  
-	public GumballMachine(int count) {
-		this.count = count;
-		if (count > 0) {
-			state = NO_QUARTER;
-		}
-	}
-  
-	public String insertQuarter() {
-		String message = "No message";
-		
-		if (state == HAS_QUARTER) {
-			message = "You can't insert another quarter";
-		} else if (state == NO_QUARTER) {
-			state = HAS_QUARTER;
-			message = "You inserted a quarter";
-		} else if (state == SOLD_OUT) {
-			message = "You can't insert a quarter, the machine is sold out";
-		} else if (state == SOLD) {
-        	message = "Please wait, we're already giving you a gumball";
-		}
-		
-		return message;
-	}
+	State state;
+	int count = 0;
+ 
+	public GumballMachine(int numberGumballs) {
+		soldOutState = new SoldOutState(this);
+		noQuarterState = new NoQuarterState(this);
+		hasQuarterState = new HasQuarterState(this);
+		soldState = new SoldState(this);
 
-	public String ejectQuarter() {
-		String message = "No message";
-		
-		if (state == HAS_QUARTER) {
-			message = "Quarter returned";
-			state = NO_QUARTER;
-		} else if (state == NO_QUARTER) {
-			message = "You haven't inserted a quarter";
-		} else if (state == SOLD) {
-			message = "Sorry, you already turned the crank";
-		} else if (state == SOLD_OUT) {
-        	message = "You can't eject, you haven't inserted a quarter yet";
+		this.count = numberGumballs;
+ 		if (numberGumballs > 0) {
+			state = noQuarterState;
+		} else {
+			state = soldOutState;
 		}
-		
-		return message;
+	}
+ 
+	public String insertQuarter() {
+		return state.insertQuarter();
+	}
+ 
+	public void ejectQuarter() {
+		state.ejectQuarter();
 	}
  
 	public String turnCrank() {
-		String message = "No message";
-		
-		if (state == SOLD) {
-			message = "Turning twice doesn't get you another gumball!";
-		} else if (state == NO_QUARTER) {
-			message = "You turned but there's no quarter";
-		} else if (state == SOLD_OUT) {
-			message = "You turned, but there are no gumballs";
-		} else if (state == HAS_QUARTER) {
-			message = "You turned...";
-			state = SOLD;
-			message += dispense();
-		}
-		
+		String message = state.turnCrank();
+		message += System.lineSeparator() + state.dispense();
 		return message;
 	}
  
-	private String dispense() {
-		String message = "No message";
-		
-		if (state == SOLD) {
-			message = System.lineSeparator() + "A gumball comes rolling out the slot";
+	String releaseBall() {
+		if (count != 0) {
 			count = count - 1;
-			if (count == 0) {
-				message += System.lineSeparator() + "Oops, out of gumballs!";
-				state = SOLD_OUT;
-			} else {
-				state = NO_QUARTER;
-			}
-		} else if (state == NO_QUARTER) {
-			message = "You need to pay first";
-		} else if (state == SOLD_OUT) {
-			message = "No gumball dispensed";
-		} else if (state == HAS_QUARTER) {
-			message = "No gumball dispensed";
 		}
-		
-		return message;
+		return "A gumball comes rolling out the slot...";
 	}
  
-	public void refill(int numGumBalls) {
-		this.count = numGumBalls;
-		state = NO_QUARTER;
+	int getCount() {
+		return count;
+	}
+ 
+	void refill(int count) {
+		this.count += count;
+		System.out.println("The gumball machine was just refilled; it's new count is: " + this.count);
+		state.refill();
 	}
 
-	public int getMachineStatus() {
-		return state;
+	void setState(State state) {
+		this.state = state;
 	}
 	
-	public boolean isSoldOut() {
-		return (state == SOLD_OUT);
-	}
+    public State getState() {
+        return state;
+    }
+
+    public State getSoldOutState() {
+        return soldOutState;
+    }
+
+    public State getNoQuarterState() {
+        return noQuarterState;
+    }
+
+    public State getHasQuarterState() {
+        return hasQuarterState;
+    }
+
+    public State getSoldState() {
+        return soldState;
+    }
 }
-
-
