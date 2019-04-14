@@ -50,16 +50,15 @@ class GumballMachineTest {
 	}
 
 	@Test
-	void testSoldFiveGumball() {
-		machine = initialGumballMachineWithFiveGumball();
+	void testSoldManyGumball() {
+		int GumballNumber = 5;
+		machine = initialGumballMachineWithSomeGumball(GumballNumber);
 		Object exceptedStatus = NoQuarterState.class;
 		testgetMachineStatus(exceptedStatus);
 		
-		buyAGumball();
-		buyAGumball();
-		buyAGumball();
-		buyAGumball();
-		buyAGumball();
+		for (int i = 0 ; i < GumballNumber ; i++) {
+			buyAGumball();
+		}
 	}
 	
 	private void buyAGumball() {
@@ -101,9 +100,8 @@ class GumballMachineTest {
 		return message;
 	}
 
-	private GumballMachine initialGumballMachineWithFiveGumball() {
-		int candyNumber = 5;
-		GumballMachine machine = new GumballMachine(candyNumber);
+	private GumballMachine initialGumballMachineWithSomeGumball(int gumballNumber) {
+		GumballMachine machine = new GumballMachine(gumballNumber);
 		return machine;
 	}
 }

@@ -1,8 +1,9 @@
 package state;
 
-//import java.util.Random;
+import java.util.Random;
 
 public class HasQuarterState implements State {
+	Random randomWinner = new Random(System.currentTimeMillis());
 	GumballMachine gumballMachine;
  
 	public HasQuarterState(GumballMachine gumballMachine) {
@@ -19,7 +20,12 @@ public class HasQuarterState implements State {
 	}
  
 	public String turnCrank() {
-		gumballMachine.setState(gumballMachine.getSoldState());
+		int winner = randomWinner.nextInt(10);
+		if ((winner == 0) && (gumballMachine.getCount() > 1)) {
+			gumballMachine.setState(gumballMachine.getWinnerState());
+		} else {
+			gumballMachine.setState(gumballMachine.getSoldState());
+		}
 		return "You turned...";
 	}
 
