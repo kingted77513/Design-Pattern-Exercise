@@ -47,7 +47,7 @@ public class GumballMachine {
 		return "A gumball comes rolling out the slot...";
 	}
  
-	int getCount() {
+	public int getCount() {
 		return count;
 	}
  

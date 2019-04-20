@@ -20,13 +20,15 @@ public class WinnerState implements State {
 	}
  
 	public String dispense() {
-		String message = "";
-		gumballMachine.releaseBall();
+		String message = gumballMachine.releaseBall();
 		if (gumballMachine.getCount() == 0) {
 			gumballMachine.setState(gumballMachine.getSoldOutState());
 		} else {
-			gumballMachine.releaseBall();
-			message += "YOU'RE A WINNER! You got two gumballs for your quarter";
+			message += System.lineSeparator()
+					+ "YOU'RE A WINNER! You got two gumballs for your quarter";
+			message += System.lineSeparator()
+					+ gumballMachine.releaseBall();
+			
 			if (gumballMachine.getCount() > 0) {
 				gumballMachine.setState(gumballMachine.getNoQuarterState());
 			} else {

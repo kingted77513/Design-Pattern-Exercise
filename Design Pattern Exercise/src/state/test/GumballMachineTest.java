@@ -51,34 +51,54 @@ class GumballMachineTest {
 
 	@Test
 	void testSoldManyGumball() {
-		int GumballNumber = 5;
+		int GumballNumber = 1000;
 		machine = initialGumballMachineWithSomeGumball(GumballNumber);
 		Object exceptedStatus = NoQuarterState.class;
 		testgetMachineStatus(exceptedStatus);
 		
-		for (int i = 0 ; i < GumballNumber ; i++) {
+		int winnerTimes = 0;
+		
+		while (machine.getCount() > 0) {
+			int beforeCount = machine.getCount();
 			buyAGumball();
+			int afterCount = machine.getCount();
+			
+			if (isSoldTwoGumball(beforeCount, afterCount)) {
+				winnerTimes++;
+			}
 		}
+		
+		double excepted = 0.1;
+		double actual = (double)winnerTimes / GumballNumber;
+		assertEquals(excepted, actual, 0.02);
 	}
 	
 	private void buyAGumball() {
 		String excepted = "You inserted a quarter";
 		testInsertQuarter(excepted);
 		
-		testTurnCrankWhenStillHaveBumball();
+		try {
+			testTurnCrankWhenStillHaveGumball();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
-	private void testTurnCrankWhenStillHaveBumball() {
+	private void testTurnCrankWhenStillHaveGumball() throws Exception {
+		int before = machine.getCount();
 		String actual = machine.turnCrank();
-		String excepted = getTurnCrankMessageAfterSoldAGumball();
+		int after = machine.getCount();
+		String excepted = getTurnCrankMessageAfterSoldAGumball(before, after);
 		assertEquals(excepted, actual);
 	}
 	
-	private String getTurnCrankMessageAfterSoldAGumball() {
+	private String getTurnCrankMessageAfterSoldAGumball
+		(int gumballNumberBeforeTrunCrank, int gumballNumberAfterTrunCrank) throws Exception {
 		State status = machine.getState();
 		String message;
 		if (status instanceof NoQuarterState) {
-			message = getTurnCrankMessageWhenSoldAGumball();
+			message = getTurnCrankMessage(gumballNumberBeforeTrunCrank
+					, gumballNumberAfterTrunCrank);
 		}else if (status instanceof SoldOutState) {
 			message = getTurnCrankMessageWhenSoldTheLastGumball();
 		}else {
@@ -87,8 +107,45 @@ class GumballMachineTest {
 		return message;
 	}
 	
+	private String getTurnCrankMessage(int gumballNumberBeforeTrunCrank
+			, int gumballNumberAfterTrunCrank) throws Exception {
+		String message;
+		if (isSoldAGumball(gumballNumberBeforeTrunCrank
+				, gumballNumberAfterTrunCrank)) {
+			message = getTurnCrankMessageWhenSoldAGumball();
+		}else if (isSoldTwoGumball(gumballNumberBeforeTrunCrank
+				, gumballNumberAfterTrunCrank)) {
+			message = getTurnCrankMessageWhenWinnerStateAndSoldTwoGumball();
+		}else {
+			throw new Exception("before = " + gumballNumberBeforeTrunCrank
+					+ " after = " + gumballNumberAfterTrunCrank);
+		}
+		return message;
+	}
+	
+	private boolean isSoldAGumball(int gumballNumberBeforeTrunCrank
+			, int gumballNumberAfterTrunCrank) {
+		return (gumballNumberBeforeTrunCrank
+				- gumballNumberAfterTrunCrank == 1);
+	}
+	
 	private String getTurnCrankMessageWhenSoldAGumball() {
+		String message = "You turned..." + System.lineSeparator()
+		+ "A gumball comes rolling out the slot...";
+		return message;
+	}
+	
+	private boolean isSoldTwoGumball(int gumballNumberBeforeTrunCrank
+			, int gumballNumberAfterTrunCrank) {
+		return (gumballNumberBeforeTrunCrank
+				- gumballNumberAfterTrunCrank == 2);
+	}
+	
+	private String getTurnCrankMessageWhenWinnerStateAndSoldTwoGumball() {
 		String message = "You turned..." + System.lineSeparator() 
+		+ "A gumball comes rolling out the slot..." + System.lineSeparator()
+		+ "YOU'RE A WINNER! You got two gumballs for your quarter"
+				+ System.lineSeparator() 
 		+ "A gumball comes rolling out the slot...";
 		return message;
 	}
